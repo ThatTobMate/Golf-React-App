@@ -34,10 +34,10 @@ const muiTheme = getMuiTheme({
 });
 
 var config = {
-  apiKey: "AIzaSyAD5OqcuGExhWi_oASzr42rq5IVvR7jdCY",
-  authDomain: "golfapp-44b1f.firebaseapp.com",
-  databaseURL: "https://golfapp-44b1f.firebaseio.com",
-  storageBucket: "golfapp-44b1f.appspot.com",
+  apiKey: "AIzaSyAD5OqcuGExhWi_oASzr42rq5IVvR7jdC", // Y
+  authDomain: "golfapp-44b1f.firebaseapp.co",
+  databaseURL: "https://golfapp-44b1f.firebaseio.co",
+  storageBucket: "golfapp-44b1f.appspot.co",
 };
 firebase.initializeApp(config);
 
