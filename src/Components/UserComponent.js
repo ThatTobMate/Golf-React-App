@@ -9,7 +9,7 @@ class UserComponent extends Component {
     const { user } = this.props;
     return (
       <div>
-        <h1>User Page: {user.user.email}</h1>
+        <h1>User Page: {user.user && user.user.uid || 'hi'}</h1>
       </div>
     )
   }

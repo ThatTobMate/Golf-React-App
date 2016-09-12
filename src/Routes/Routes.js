@@ -4,7 +4,6 @@ import App from '../App';
 import LoginContainer from '../Containers/LoginContainer';
 import CourseContainer from '../Containers/CourseContainer';
 import User from '../Components/UserComponent';
-import store from '../index'
 import { checkForSession } from '../Actions/AuthActions';
 
 
@@ -19,9 +18,9 @@ export const getRoutes = (store) => {
     // const user = state.authReducer
   };
   return (
-    <Route path='/' component={App} onEnter={authRequired}>
-      <IndexRoute component={LoginContainer} />
-      <Route path='/user/:userId' component={User}/>
+    <Route path='/' component={App}>
+      <IndexRoute component={LoginContainer} onEnter={authRequired}/>
+      <Route path='/user/:userId' component={User} onEnter={authRequired}/>
       <Route path='/addCourse' component={CourseContainer} onEnter={authRequired}/>
     </Route>
   );

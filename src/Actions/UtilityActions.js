@@ -7,8 +7,6 @@ export const openMenu = () => {
   };
 };
 
-
-
 export const toggleMenu = () => {
   return (dispatch) => {
     dispatch(openMenu())

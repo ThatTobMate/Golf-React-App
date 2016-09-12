@@ -6,18 +6,22 @@ import MenuComponent from './MenuComponent';
 import { Router, Route, Link } from 'react-router'
 import { connect } from 'react-redux';
 import {logOut} from '../Actions/AuthActions';
+import { browserHistory } from 'react-router'
+
 
 export class NavComponent extends Component {
   constructor(props) {
       super(props);
       this.state = {open: false};
-    };
-
+    }
+    
     handleToggle = () => this.setState({open: !this.state.open});
 
     handleClose = () => this.setState({open: false});
 
-    handleLink = () => console.log('route change here');
+    navigateToUserProfile = () => {this.context.router.push('/user/' + this.props.user.user.uid)}
+
+    navigateToHome = () => {this.context.router.push('/')}
 
     handleLogOut = () => {
       this.props.onLogOut()
@@ -40,9 +44,15 @@ export class NavComponent extends Component {
         >
           <MenuItem onTouchTap={this.handleClose}>X</MenuItem>
           <MenuItem onTouchTap={this.handleLogOut.bind(this)}>Log Out</MenuItem>
-          <MenuItem onTouchTap={this.handleLink.bind(this)}>Add Course</MenuItem>
+          <MenuItem onTouchTap={this.navigateToUserProfile.bind(this)}>Update Profile</MenuItem>
+          <MenuItem onTouchTap={this.navigateToHome.bind(this)}>Home</MenuItem>
         </Drawer>
       </div>
     );
   }
+}
+
+NavComponent.contextTypes = {
+    router: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object
 }

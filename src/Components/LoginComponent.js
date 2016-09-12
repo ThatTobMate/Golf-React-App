@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {logIn, logOut} from '../Actions/AuthActions';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import HomeGuideComponent from './HomeGuideComponent';
 
 const style = {
   margin: 12
@@ -48,9 +49,9 @@ export class LoginWelcome extends Component {
     return (
       <div>
         <h1>Logged In</h1>
-        <RaisedButton label="Log Out" style={style} onClick={(event) => this.handleLogIn(event)} />
-        <button onClick={(event) => this.handleLogOut(event)}>Log Out</button>
+        <RaisedButton label="Log Out" secondary={true} style={style} onClick={(event) => this.handleLogOut(event)} />
         <Link to={`/user/${user.user.uid}`}> Update Profile </Link>
+        <HomeGuideComponent/>
       </div>
     )
   }
