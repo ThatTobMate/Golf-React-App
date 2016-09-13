@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import {getRoutes} from './Routes/Routes';
+import {checkForSession} from './Actions/AuthActions';
 import * as Colors from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -20,7 +21,7 @@ const muiTheme = getMuiTheme({
     primary1Color: Colors.lightGreen500,
     primary2Color: Colors.green500,
     primary3Color: Colors.grey400,
-    accent1Color: Colors.pinkA200,
+    accent1Color: Colors.green500,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
     textColor: Colors.darkblack,
@@ -32,19 +33,20 @@ const muiTheme = getMuiTheme({
 });
 
 var config = {
-  apiKey: "AIzaSyAD5OqcuGExhWi_oASzr42rq5IVvR7jdCY",
-  authDomain: "golfapp-44b1f.firebaseapp.com",
-  databaseURL: "https://golfapp-44b1f.firebaseio.com",
-  storageBucket: "golfapp-44b1f.appspot.com",
+  apiKey: "AIzaSyBvqwzw99Pa26sXq4gy0fIHQfaDgP97x28",
+  authDomain: "test-cffb9.firebaseapp.com",
+  databaseURL: "https://test-cffb9.firebaseio.com",
+  storageBucket: "test-cffb9.appspot.com",
 };
 firebase.initializeApp(config);
+    
 
 const store = configureStore();
 
 store.subscribe(() => {
   console.log(store.getState());
 });
-
+store.dispatch(checkForSession())
 // store.dispatch(checkForSession());
 
 // Routes

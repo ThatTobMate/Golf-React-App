@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router'
 import { connect } from 'react-redux';
-import {logIn, logOut} from '../Actions/AuthActions';
+import {update, logOut} from '../Actions/AuthActions';
+import Paper from 'material-ui/Paper';
 
-class UserComponent extends Component {
+const style = {
+  height: '100%',
+  width: '100%',
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
+};
+
+export class UserDetailsComponent extends Component {
   render() {
     console.log(this.props)
     const { user } = this.props;
     return (
       <div>
-        <h1>User Page: {user.user && user.user.uid || 'hi'}</h1>
+        <h1> { user.user && user.user.name || 'Tobias Hale' }</h1>
       </div>
     )
   }
 };
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    user: state.authReducer
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLogin: (email, password) => dispatch(logIn(email, password))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserComponent);
+export class UserProfilePicture extends Component {
+  render () {
+    const { user } = this.props;
+    var alt = 'http://img2.timeinc.net/people/i/2010/database/100816/tiger-woods-300.jpg';
+    return (
+      <img src={user.image || alt} style={{height: '100%', width: '100%'}}/>
+    )
+  }
+}

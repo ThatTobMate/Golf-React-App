@@ -33,6 +33,27 @@ export default function authReducer(state = INITIAL_STATE, action) {
        error: null,
        loading: false
      };
+    case AuthConstants.UPDATE_PROFILE :
+      return {...state,
+        status: 'Updating Profile',
+        error: null,
+        loading: true
+      };
+    case AuthConstants.UPDATE_PROFILE_SUCCESS :
+      return {...state,
+        user: action.payload.user,
+        loading: false,
+        status: 'Update profile successful',
+        error: null
+      };
+    case AuthConstants.UPDATE_PROFILE_FAILURE :
+      error = action.payload.user || {message: action.payload}
+      return {...state,
+        error: error,
+        loading: false,
+        status: 'Update profile failed'
+      }
+
     default :
       return state;
   }

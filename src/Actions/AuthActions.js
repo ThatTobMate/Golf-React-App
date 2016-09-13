@@ -1,4 +1,5 @@
-import {AuthConstants} from '../Constants/Constants';
+import {AuthConstants, UserConstants} from '../Constants/Constants';
+import { getUserById } from './UserActions';
 import * as firebase from 'firebase';
 
 export const loginFailure = (error) => {
@@ -30,7 +31,7 @@ export const loggedOut = () => {
   };
 };
 
-export const checkForSession = (cb) => {
+export const checkForSession = () => {
   return (dispatch) => {
     dispatch(loginRequest())
     firebase.auth().onAuthStateChanged(function(userData) {
@@ -38,12 +39,11 @@ export const checkForSession = (cb) => {
         var user = {email: userData.email, uid: userData.uid};
         localStorage.setItem('uid', user.uid);
         dispatch(loginSuccess(user));
-        cb();
+        dispatch(getUserById(user.uid));
       } else {
         var error = {message: 'No session available'};
         localStorage.removeItem('uid');
         dispatch(loginFailure(error));
-        cb();
       }
     })
   }
@@ -57,6 +57,7 @@ export const logIn = (email, password) => {
       var user = {email: userData.email, uid: userData.uid};
       localStorage.setItem('uid', user.uid);
       dispatch(loginSuccess(user));
+      dispatch(getUserById(user.uid));
     })
     .catch(function (err) {
       dispatch(loginFailure(err));
@@ -72,5 +73,18 @@ export const logOut = () => {
       localStorage.removeItem('uid');
       dispatch(loggedOut());
     })
+  }
+}
+
+export const createUser = (email, password) => {
+  return (dispatch) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function (user) {
+      debugger
+      database.ref('users/' + user.uid).set({
+        email: user.email,
+        id: user.uid
+      });
+    });
   }
 }
