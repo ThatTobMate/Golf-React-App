@@ -1,23 +1,23 @@
 import {UserConstants} from '../Constants/Constants';
 import * as firebase from 'firebase';
+import _ from 'underscore';
 
-export const fetchUserDetails = () => {
+export const fetchUser = () => {
   return {
-    type: UserConstants.FETCH_USER_DETAILS
+    type: UserConstants.FETCH_USER
   };
 };
 
-export const fetchUserDetailsSuccess = (userData) => {
-  debugger
+export const fetchUserSuccess = (userData) => {
   return {
-    type: UserConstants.FETCH_USER_DETAILS_SUCCESS,
-    payload: {user: userData.user, tournaments: userData.pets}
+    type: UserConstants.FETCH_USER_SUCCESS,
+    payload: {user: userData.user}
   };
 };
 
-export const fetchUserDetailsFailure = (error) => {
+export const fetchUserFailure = (error) => {
   return {
-    type: UserConstants.FETCH_USER_DETAILS_FAILURE,
+    type: UserConstants.FETCH_USER_FAILURE,
     payload: error
   };
 };
@@ -42,37 +42,52 @@ export const updateUserDetailsFailure = (error) => {
   };
 };
 
-export const submitUserDetails = (userData) => {
-  return (dispatch) => {
-
+export const fetchUserDetails = (userData) => {
+  return {
+    type: 'FETCH_USER_DETAILS',
+    payload: Promise.all([
+      getUserTrophies(userData),
+      getUserTournaments(userData)
+    ].map(Promise.all, Promise)).then(function(d){
+      userData.trophies = d[0].map(function(snapshot){
+        let trophy = _.omit(snapshot.val(), 'users');
+        return trophy;
+      });
+      userData.tournaments = d[1].map(function(snapshot){
+        let tournaments = _.omit(snapshot.val(), 'users');
+        return tournaments;
+      })
+      return userData;
+    })
   };
 };
 
-const getPromiseData = (userData) => {
-  Promise.all([getUserPets(userData), getPets(userData)]).then(function(results) {
-    debugger
-    // dispatch(fetchUserDetailsSuccess(userData));
-  })
-}
+const getUserTrophies = (userData) => {
+  let promises = [];
+  _.each(userData.user.trophies, function (value , id) {
+    promises.push(firebase.database().ref('trophies/' + id).once('value'));
+  });
+  return promises;
+};
 
-const getUserPets = (userData) => {
-  return firebase.database().ref('pets/' + userData.user.petId).on('value')
-}
-
-const getPets = (userData) => {
-  return firebase.database().ref('pets').on('value')
-}
+const getUserTournaments = (userData) => {
+  let promises = [];
+  _.each(userData.user.tournaments, function (value , id) {
+    promises.push(firebase.database().ref('tournaments/' + id).once('value'));
+  });
+  return promises;
+};
 
 export const getUserById = (userId) => {
   return (dispatch) => {
-    dispatch(fetchUserDetails());
+    dispatch(fetchUser());
     let userData = {};
-
-    firebase.database().ref('users/' + userId).on('value', function(snapshot){
+    firebase.database().ref('users/' + userId).on('value', function (snapshot){
       userData.user = snapshot.val();
-      getPromiseData(userData);
+      dispatch(fetchUserSuccess(userData));
+      dispatch(fetchUserDetails(userData));
     }, function (error) {
-      dispatch(fetchUserDetailsFailure(error));
+      dispatch(fetchUserFailure(error));
     });
-  }
-}
+  };
+};
