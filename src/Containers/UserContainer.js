@@ -30,9 +30,7 @@ class UserContainer extends Component {
           <UserProfilePicture user={this.props.user} />
         </Paper>
         <UserDetailsComponent user={this.props.user} />
-        <Paper style={style.trophies} zDepth={3}>
           { user.trophies ? <UserTrophiesComponent user={this.props.user} /> : <CircularProgress size={2} />}
-        </Paper>
       </div>
     if (!user.user) html = <CircularProgress size={2} />
     return (

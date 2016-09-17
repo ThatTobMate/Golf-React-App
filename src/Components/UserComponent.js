@@ -45,21 +45,18 @@ const style = {
 
 export class UserDetailsComponent extends Component {
   render() {
-    console.log(this.props)
     const { user } = this.props;
     return (
       <div>
         <h1> { user.user && user.user.name }</h1>
       </div>
-    )
-  }
+    );
+  };
 };
 
 export class UserTrophiesComponent extends Component {
   render() {
-    console.log(this.props.user.trophies);
     const { user } = this.props;
-    console.log(user, user.trophies)
     return (
       <div style={style.root}>
         <GridList
@@ -80,8 +77,35 @@ export class UserTrophiesComponent extends Component {
           ))}
         </GridList>
       </div>
-    )
-  }
+    );
+  };
+};
+
+export class UserTournamentsComponent extends Component {
+  render () {
+    const { user } = this.props;
+    return (
+      <div style={style.root}>
+        <GridList
+          cellHeight={200}
+          style={style.gridList}
+        >
+          <Subheader>Recent Tournaments</Subheader>
+          {user.tournaments.map((tournament, index) => (
+            <Paper style={style.paper} zDepth={1}>
+              <GridTile
+                key={index}
+                title={tournament.title}
+                subtitle={<span><b>Winner: {tournament.winner}</b></span>}
+              >
+                <img style={{maxWidth: '30%'}} src={tounament.image} />
+              </GridTile>
+            </Paper>
+          ))}
+        </GridList>
+      </div>
+    );
+  };
 };
 
 export class UserProfilePicture extends Component {
@@ -90,6 +114,6 @@ export class UserProfilePicture extends Component {
     var alt = 'http://img2.timeinc.net/people/i/2010/database/100816/tiger-woods-300.jpg';
     return (
       <img src={user.image || alt} style={{height: '100%', width: '100%'}}/>
-    )
-  }
-}
+    );
+  };
+};
