@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import { Router, Route, Link } from 'react-router';
 import { connect } from 'react-redux';
-import {User} from '../Components/UserComponents'
+import { User } from '../Components/UserComponents'
 import CircularProgress from 'material-ui/CircularProgress';
 import Paper from 'material-ui/Paper';
 import { containerStyle } from '../Themes/UserStyles';
+import { openUserForm, closeUserForm } from '../Actions/UtilityActions';
+import { submitUserDetailsUpdate } from '../Actions/UserActions';
 
 
 
 
 class UserContainer extends Component {
   render () {
-    const { user } = this.props;
+    const { user, utility } = this.props;
     var html = <div>
         <Paper style={containerStyle.profile} zDepth={3}>
           <User.ProfilePictureComponent user={this.props.user} />
         </Paper>
-        <User.DetailsComponent user={this.props.user} />
+        <User.DetailsComponent user={this.props.user} onUpdateUser={this.props.onUpdateUser}/>
         <Paper style={containerStyle.trophies} zDepth={3}>
           <User.TabsComponent user={this.props.user} />
         </Paper>
       </div>
     if (!user.user) html = <CircularProgress size={2} />
+    if (utility.forms.updateUser) html = <User.EditUserComponent user={this.props.user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
     return (
       <div>
         {html}
@@ -33,13 +35,16 @@ class UserContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.authReducer,
-    user: state.userReducer
+    user: state.userReducer,
+    utility: state.utilityReducer
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateUser: (userData) => dispatch(updateUser(userData)),
+    onUpdateUser: () => dispatch(openUserForm()),
+    onCancelUpdate: () => dispatch(closeUserForm()),
+    onSubmitUser: () => dispatch(submitUserDetailsUpdate()),
   };
 };
 

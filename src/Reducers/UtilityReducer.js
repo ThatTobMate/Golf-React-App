@@ -1,5 +1,5 @@
-import {UtilityConstants} from '../Constants/Constants';
-const INITIAL_STATE = {menu: {open: false}};
+import { UtilityConstants } from '../Constants/Constants';
+const INITIAL_STATE = {forms: {updateUser: false}};
 
 export default function utilityReducer(state = INITIAL_STATE, action) {
   let error;
@@ -8,6 +8,11 @@ export default function utilityReducer(state = INITIAL_STATE, action) {
       return {...state,
        menu: {open: true}
      };
+    case UtilityConstants.UPDATE_USER_FORM :
+      return {
+        ...state,
+        forms: {updateUser: action.payload}
+      };
     default :
       return state;
   }

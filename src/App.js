@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import {AuthConstants} from './Constants/Constants';
-import {Nav} from './Components/NavComponents';
-import {logOut} from './Actions/AuthActions';
+import { AuthConstants } from './Constants/Constants';
+import { Nav } from './Components/NavComponents';
+import { logOut } from './Actions/AuthActions';
 
 class App extends Component {
   render() {

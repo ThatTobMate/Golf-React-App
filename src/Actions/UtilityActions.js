@@ -1,4 +1,4 @@
-import {UtilityConstants} from '../Constants/Constants';
+import { UtilityConstants } from '../Constants/Constants';
 
 export const openMenu = () => {
   return {
@@ -12,3 +12,17 @@ export const toggleMenu = () => {
     dispatch(openMenu())
   }
 }
+
+export const openUserForm = () => {
+  return {
+    type: UtilityConstants.UPDATE_USER_FORM,
+    payload: true
+  };
+};
+
+export const closeUserForm = () => {
+  return {
+    type: UtilityConstants.UPDATE_USER_FORM,
+    payload: false
+  };
+};

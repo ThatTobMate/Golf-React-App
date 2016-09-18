@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import { style } from '../../Themes/UserStyles';
 

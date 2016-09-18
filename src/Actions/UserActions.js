@@ -22,6 +22,12 @@ export const fetchUserFailure = (error) => {
   };
 };
 
+export const updateUser = () => {
+  return {
+    type: UserConstants.UPDATE_USER
+  };
+};
+
 export const updateUserDetails = () => {
   return {
     type: UserConstants.UPDATE_USER_DETAILS
@@ -40,6 +46,10 @@ export const updateUserDetailsFailure = (error) => {
     type: UserConstants.UPDATE_USER_DETAILS_FAILURE,
     payload: error
   };
+};
+
+export const submitUserDetailsUpdate = (userDate) => {
+  debugger;
 };
 
 export const fetchUserDetails = (userData) => {

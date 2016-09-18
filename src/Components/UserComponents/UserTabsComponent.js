@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import { style } from '../../Themes/UserStyles';
-import {UserTrophiesComponent} from './UserTrophiesComponent';
-import {UserTournamentsComponent} from './UserTournamentsComponent';
+import { UserTrophiesComponent } from './UserTrophiesComponent';
+import { UserTournamentsComponent } from './UserTournamentsComponent';
 
 export class UserTabsComponent extends Component {
   constructor(props) {
