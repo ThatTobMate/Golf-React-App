@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import MenuComponent from './MenuComponent';
 import { Router, Route, Link } from 'react-router'
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'

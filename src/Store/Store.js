@@ -8,6 +8,7 @@ import { browserHistory } from 'react-router';
 export default function configureStore() {
   const store = createStore (
     rootReducer,
+    window.devToolsExtension && window.devToolsExtension(),
     applyMiddleware(thunk, promiseMiddleware(), routerMiddleware(browserHistory))
   );
   return store;

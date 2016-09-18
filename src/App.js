@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import {AuthConstants} from './Constants/Constants';
-import {NavComponent} from './Components/NavComponent';
+import {Nav} from './Components/NavComponents';
 import {logOut} from './Actions/AuthActions';
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
     const { children, history, user } = this.props;
     return (
       <div className="App">
-        <NavComponent user={user} onLogOut={this.props.onLogOut}/>
+        <Nav.MenuComponent user={user} onLogOut={this.props.onLogOut}/>
         {children}
       </div>
     );
