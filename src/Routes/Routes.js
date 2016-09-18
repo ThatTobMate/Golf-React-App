@@ -8,24 +8,6 @@ import { checkForSession } from '../Actions/AuthActions';
 
 
 export const getRoutes = (store) => {
-  // const authRequired = (nextState, replace, callback) => {
-    // todo: in react-router 2.0, you can pass a single object to replace :)
-    // if (!user.status === 'authenticated') {
-    //   replace({ nextPathname: nextState.location.pathname }, '/', nextState.location.query)
-    // }
-    // debugger
-    // if (localStorage.getItem('uid')) {
-    //   callback()
-    // }
-  //   const state = store.getState()
-  //   const user = state.userReducer
-  //   debugger
-  //   if (user.status === 'Success: fetched user data') {
-  //     callback()
-  //   }
-  //   // 
-    
-  // };
   return (
     <Route path='/' component={App}>
       <IndexRoute component={LoginContainer} />

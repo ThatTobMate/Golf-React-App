@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, Link } from 'react-router';
 import { connect } from 'react-redux';
-import { UserProfilePicture, UserDetailsComponent, UserTrophiesComponent } from '../Components/UserComponent';
+import { UserProfilePicture, UserDetailsComponent, UserTrophiesComponent, UserTournamentsComponent, UserTabs } from '../Components/UserComponent';
 import CircularProgress from 'material-ui/CircularProgress';
 import Paper from 'material-ui/Paper';
 
@@ -19,6 +19,19 @@ const style = {
     margin: 20,
     textAlign: 'center',
     display: 'inline-block'
+  },
+  tournaments: {
+    height: '20%',
+    width: '90%',
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400
   }
 };
 
@@ -30,7 +43,9 @@ class UserContainer extends Component {
           <UserProfilePicture user={this.props.user} />
         </Paper>
         <UserDetailsComponent user={this.props.user} />
-          { user.trophies ? <UserTrophiesComponent user={this.props.user} /> : <CircularProgress size={2} />}
+        <Paper style={style.trophies} zDepth={3}>
+          <UserTabs user={this.props.user} />
+        </Paper>
       </div>
     if (!user.user) html = <CircularProgress size={2} />
     return (

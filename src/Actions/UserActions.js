@@ -49,6 +49,7 @@ export const fetchUserDetails = (userData) => {
       getUserTrophies(userData),
       getUserTournaments(userData)
     ]).then(function(data){
+      // Convert firebase objects - list of objects to a arrays of objects.
       userData.trophies = _.map(data[0].val(), (value, index) => (
        _.omit(value, 'users') 
       ))
@@ -60,37 +61,11 @@ export const fetchUserDetails = (userData) => {
   };
 };
 
-// export const fetchUserDetails = (userData) => {
-//   return {
-//     type: 'FETCH_USER_DETAILS',
-//     payload: Promise.all([
-//       getUserTrophies(userData),
-//       getUserTournaments(userData)
-//     ].map(Promise.all, Promise)).then(function(d){
-//       debugger
-//       userData.trophies = d[0].map(function(snapshot){
-//         let trophy = _.omit(snapshot.val(), 'users');
-//         return trophy;
-//       });
-//       userData.tournaments = d[1].map(function(snapshot){
-//         let tournaments = _.omit(snapshot.val(), 'users');
-//         return tournaments;
-//       })
-//       return userData;
-//     })
-//   };
-// };
-
 const getUserTrophies = (userData) => {
   let promise = firebase.database().ref('trophies')
                 .orderByChild('users/' + userData.user.uid)
                 .equalTo(true)
                 .once('value')
-  // let promises = [];
-  // _.each(userData.user.trophies, function (value , id) {
-  //   promises.push(firebase.database().ref('trophies/' + id).once('value'));
-  // });
-  // return promises;
   return promise;
 };
 
@@ -99,11 +74,6 @@ const getUserTournaments = (userData) => {
                 .orderByChild('users/' + userData.user.uid)
                 .equalTo(true)
                 .once('value')
-  // let promises = [];
-  // _.each(userData.user.tournaments, function (value , id) {
-  //   promises.push(firebase.database().ref('tournaments/' + id).once('value'));
-  // });
-  // return promises;
   return promise;
 };
 

@@ -5,6 +5,7 @@ import './index.css';
 import * as firebase from 'firebase';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import {getRoutes} from './Routes/Routes';
 import {checkForSession} from './Actions/AuthActions';
 import * as Colors from 'material-ui/styles/colors';
@@ -42,6 +43,7 @@ firebase.initializeApp(config);
     
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 
 store.subscribe(() => {
   console.log(store.getState());
@@ -55,7 +57,7 @@ store.dispatch(checkForSession())
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store}>
-      <Router history={browserHistory}>
+      <Router history={history}>
         {getRoutes(store)}
       </Router>
     </Provider>

@@ -1,6 +1,8 @@
 import {AuthConstants, UserConstants} from '../Constants/Constants';
 import { getUserById } from './UserActions';
 import * as firebase from 'firebase';
+import { push } from 'react-router-redux';
+
 
 export const loginFailure = (error) => {
   return {
@@ -71,7 +73,8 @@ export const logOut = () => {
     .then(function (data) {
       console.log(data)
       localStorage.removeItem('uid');
-      dispatch(loggedOut());
+      dispatch(loggedOut())
+      dispatch(push('/'))
     })
   }
 }
@@ -80,7 +83,6 @@ export const createUser = (email, password) => {
   return (dispatch) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function (user) {
-      debugger
       database.ref('users/' + user.uid).set({
         email: user.email,
         id: user.uid

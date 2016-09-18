@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 const style = {
   picture: {
@@ -28,19 +29,37 @@ const style = {
       flexWrap: 'wrap',
       justifyContent: 'space-around',
     },
-    gridList: {
-      width: '100%',
-      height: '100%',
-      overflowY: 'auto',
-      marginBottom: 24,
-    },
-    gridTile: {
-      width: '33%'
-    },
-    gridImage: {
-      width: 'initial',
-      maxWidth: '100%'
-    }
+  gridList: {
+    width: '100%',
+    height: '100%',
+    overflowY: 'auto',
+    marginBottom: 24,
+  },
+  gridTile: {
+    width: '33%'
+  },
+  gridImage: {
+    width: 'initial',
+    maxWidth: '100%'
+  },
+  trophyContainer: {
+    width: '100%',
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  tournamentContainer: {
+    width: '100%',
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400
+  }
 };
 
 export class UserDetailsComponent extends Component {
@@ -63,17 +82,15 @@ export class UserTrophiesComponent extends Component {
           cellHeight={200}
           style={style.gridList}
         >
-          <Subheader>Recent Trophies</Subheader>
           {user.trophies.map((trophy, index) => (
-            <Paper style={style.paper} zDepth={1}>
               <GridTile
+                style={style.trophyContainer}
                 key={index}
                 title={trophy.name}
                 subtitle={<span><b>{trophy.description}</b></span>}
               >
                 <img style={{maxWidth: '30%'}} src={trophy.image} />
               </GridTile>
-            </Paper>
           ))}
         </GridList>
       </div>
@@ -90,17 +107,15 @@ export class UserTournamentsComponent extends Component {
           cellHeight={200}
           style={style.gridList}
         >
-          <Subheader>Recent Tournaments</Subheader>
           {user.tournaments.map((tournament, index) => (
-            <Paper style={style.paper} zDepth={1}>
               <GridTile
+                style={style.tournamentContainer}
                 key={index}
                 title={tournament.title}
-                subtitle={<span><b>Winner: {tournament.winner}</b></span>}
+                subtitle={<span><b>Winner: Tobias</b></span>}
               >
-                <img style={{maxWidth: '30%'}} src={tounament.image} />
+                <img style={{maxWidth: '30%'}} src={tournament.image} />
               </GridTile>
-            </Paper>
           ))}
         </GridList>
       </div>
@@ -117,3 +132,35 @@ export class UserProfilePicture extends Component {
     );
   };
 };
+
+export class UserTabs extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        value: 'tournaments',
+      };
+    }
+
+    handleChange = (value) => {
+      this.setState({
+        value: value,
+      });
+    };
+
+    render() {
+      const { user } = this.props;
+      return (
+        <Tabs
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
+          <Tab label="Tournaments" value="tournaments" >
+            { user.tournaments ? <UserTournamentsComponent  user={this.props.user} /> : <CircularProgress size={2} />}
+          </Tab>
+          <Tab label="Trophies" value="trophies">
+            { user.trophies ? <UserTrophiesComponent  user={this.props.user} /> : <CircularProgress size={2} />}
+          </Tab>
+        </Tabs>
+      );
+    }
+}
