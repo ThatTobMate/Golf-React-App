@@ -1,4 +1,10 @@
 export const style = {
+  close: {
+    position: 'absolute',
+    top: 78,
+    right: '15%',
+    cursor: 'pointer'
+  },
   picture: {
     height: '100%',
     width: '100%',

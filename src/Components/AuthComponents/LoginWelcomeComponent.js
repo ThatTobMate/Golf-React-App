@@ -11,8 +11,6 @@ export class LoginWelcomeComponent extends Component {
       <div>
         <h1>Logged In</h1>
         <RaisedButton label="Log Out" secondary={true} style={style} onClick={(event) => this.handleLogOut(event)} />
-        <Link to={`/user/${user.user.uid}`}> Update Profile </Link>
-        <HomeGuideComponent/>
       </div>
     )
   }

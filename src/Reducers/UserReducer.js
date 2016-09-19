@@ -46,10 +46,6 @@ export default function userReducer (state = INITIAL_STATE, action) {
     case UserConstants.UPDATE_USER_DETAILS_SUCCESS :
       return {
         ...state,
-        user: action.payload.user,
-        trophies: action.payload.trophies,
-        tournaments: action.payload.tournaments,
-        friends: action.payload.friends,
         status: 'Success: updated user data',
         error: null,
         loading: false

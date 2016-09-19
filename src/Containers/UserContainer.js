@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateUser: () => dispatch(openUserForm()),
     onCancelUpdate: () => dispatch(closeUserForm()),
-    onSubmitUser: () => dispatch(submitUserDetailsUpdate()),
+    onSubmitUser: (userData) => dispatch(submitUserDetailsUpdate(userData)),
   };
 };
 

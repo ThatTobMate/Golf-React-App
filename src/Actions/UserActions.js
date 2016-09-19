@@ -1,4 +1,5 @@
-import {UserConstants} from '../Constants/Constants';
+import { UserConstants } from '../Constants/Constants';
+import { closeUserForm } from './UtilityActions';
 import * as firebase from 'firebase';
 import _ from 'underscore';
 
@@ -36,8 +37,7 @@ export const updateUserDetails = () => {
 
 export const updateUserDetailsSuccess = (userData) => {
   return {
-    type: UserConstants.UPDATE_USER_DETAILS_SUCCESS,
-    payload: userData
+    type: UserConstants.UPDATE_USER_DETAILS_SUCCESS
   };
 };
 
@@ -48,8 +48,16 @@ export const updateUserDetailsFailure = (error) => {
   };
 };
 
-export const submitUserDetailsUpdate = (userDate) => {
-  debugger;
+export const submitUserDetailsUpdate = (userData) => {
+  return (dispatch) => {
+    dispatch(updateUser());
+    firebase.database().ref('users')
+    .child(localStorage.getItem('uid'))
+    .update(userData).then(function () {
+      dispatch(updateUserDetailsSuccess())
+      dispatch(closeUserForm())
+    })
+  };
 };
 
 export const fetchUserDetails = (userData) => {
