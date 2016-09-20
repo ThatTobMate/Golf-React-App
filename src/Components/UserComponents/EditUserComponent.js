@@ -6,6 +6,20 @@ import { style } from '../../Themes/UserStyles';
 
 
 export class EditUserComponent extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      controlledDate: this.props.user.user.DOB
+    };
+  }
+
+  handleChange = (event, date) => {
+    this.setState({
+      controlledDate: date
+    });
+  };
+
   handleClose() {
     this.props.onCancelUpdate();
   };
@@ -13,7 +27,7 @@ export class EditUserComponent extends Component {
   handleOnSubmitUser() {
     let userData = {
       name: this.refs.name.input.value,
-      DOB: this.refs.dob.state.date.toLocaleDateString()
+      DOB: this.refs.dob.state.date
     }
     this.props.onSubmitUser(userData)
   }
@@ -29,12 +43,15 @@ export class EditUserComponent extends Component {
           floatingLabelText="Name"
           type="text"
           ref='name'
+          defaultValue={user.user.name}
         /><br />
         <DatePicker
           hintText="Date of Birth"
           floatingLabelText="Date of Birth"
           type="text"
           ref='dob'
+          value={new Date(this.state.controlledDate)}
+          onChange={this.handleChange}
         /><br />
         <RaisedButton label="Save" primary={true} onClick={() => this.handleOnSubmitUser()} />
       </div>
