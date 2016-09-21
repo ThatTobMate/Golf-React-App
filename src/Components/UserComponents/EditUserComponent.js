@@ -8,11 +8,11 @@ import { style } from '../../Themes/UserStyles';
 export class EditUserComponent extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       controlledDate: this.props.user.user.DOB
     };
-  }
+  };
 
   handleChange = (event, date) => {
     this.setState({
@@ -28,9 +28,9 @@ export class EditUserComponent extends Component {
     let userData = {
       name: this.refs.name.input.value,
       DOB: this.refs.dob.state.date
-    }
-    this.props.onSubmitUser(userData)
-  }
+    };
+    this.props.onSubmitUser(userData);
+  };
 
   render () {
     const { user } = this.props;
@@ -56,5 +56,5 @@ export class EditUserComponent extends Component {
         <RaisedButton label="Save" primary={true} onClick={() => this.handleOnSubmitUser()} />
       </div>
     )
-  }
-}
+  };
+};

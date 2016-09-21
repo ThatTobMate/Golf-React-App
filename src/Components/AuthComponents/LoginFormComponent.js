@@ -21,13 +21,15 @@ export class LoginFormComponent extends Component {
           ref='password'
           inputStyle={style.inputStyle}
         /><br />
-        <RaisedButton label="Log In" primary={true} style={style} onClick={(event) => this.handleLogIn(event)} />
+        <RaisedButton label="Log In" primary={true} style={style} onClick={(event) => this.handleForm('logIn')} />
+        <RaisedButton label="Create Account" secondary={true} style={style} onClick={(event) => this.handleForm('create')} />
+
       </div>
     )
   }
-  handleLogIn(event) {
+  handleForm(type) {
     const email = this.refs.email.input.value;
     const password = this.refs.password.input.value;
-    this.props.onLogin(email, password);
+    type === 'logIn' ? this.props.onLogin(email, password) : this.props.onCreate(email, password);
   }
 }

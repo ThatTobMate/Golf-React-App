@@ -4,13 +4,37 @@ const INITIAL_STATE = {user: null, status: null, error: null, loading: false};
 export default function authReducer(state = INITIAL_STATE, action) {
   let error;
   switch (action.type) {
+    case AuthConstants.CREATE_USER :
+      return {
+        ...state,
+        status: 'creating user',
+        loading: true,
+        error: null,
+        user: null
+      };
+    case AuthConstants.CREATE_USER_SUCCESS :
+      return {
+        ...state,
+        status: 'Success: user created',
+        loading: false,
+        error: null,
+        user: action.payload.user
+      };
+    case AuthConstants.CREATE_USER_FAILURE :
+      return {
+        ...state,
+        status: 'Failed: user not created',
+        loading: false,
+        error: action.payload,
+        user: null
+      };
     case AuthConstants.ATTEMPT_LOGIN :
       return {...state,
-       status: 'authenticating',
-       loading: true,
-       error: null,
-       user: null
-     };
+        status: 'authenticating',
+        loading: true,
+        error: null,
+        user: null
+      };
     case AuthConstants.LOGIN_SUCCESS :
       return {...state,
        user: action.payload.user,

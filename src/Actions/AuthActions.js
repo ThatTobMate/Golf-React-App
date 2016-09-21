@@ -3,6 +3,28 @@ import { getUserById } from './UserActions';
 import * as firebase from 'firebase';
 import { push } from 'react-router-redux';
 
+export const createUser = () => {
+  return {
+    type: AuthConstants.CREATE_USER
+  };
+};
+
+export const createUserSuccess = (userData) => {
+  return {
+    type: AuthConstants.CREATE_USER_SUCCESS,
+    payload: {user: userData}
+  };
+};
+
+export const createUserFailure = (error) => {
+  return {
+    type: AuthConstants.CREATE_USER_FAILURE,
+    payload: {
+      status: error,
+      statusText: error
+    }
+  };
+};
 
 export const loginFailure = (error) => {
   return {
@@ -79,14 +101,22 @@ export const logOut = () => {
   }
 }
 
-export const createUser = (email, password) => {
+export const addUser = (email, password) => {
   return (dispatch) => {
+    dispatch(createUser());
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(function (user) {
-      database.ref('users/' + user.uid).set({
+    .then(function (userData) {
+      let user = {email: userData.email, uid: userData.uid};
+      dispatch(createUserSuccess(user));
+      firebase.database().ref('users/' + user.uid).set({
         email: user.email,
         id: user.uid
+      }).then(function (data) {
+        dispatch(checkForSession());
       });
+    })
+    .catch(function (err) {
+      dispatch(createUserFailure(err));
     });
   }
 }

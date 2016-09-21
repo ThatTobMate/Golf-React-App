@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import {getRoutes} from './Routes/Routes';
-import { checkForSession } from './Actions/AuthActions';
+import { checkForSession, addUser } from './Actions/AuthActions';
 import * as Colors from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -48,6 +48,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 store.subscribe(() => {
   console.log(store.getState());
 });
+// store.dispatch(addUser('toatest@mail.com', 'password'))
 store.dispatch(checkForSession())
 
 // Routes
