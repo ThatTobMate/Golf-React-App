@@ -54,6 +54,7 @@ export const submitUserDetailsUpdate = (userData) => {
     firebase.database().ref('users')
     .child(localStorage.getItem('uid'))
     .update(userData).then(function () {
+      debugger
       dispatch(updateUserDetailsSuccess())
       dispatch(closeUserForm())
     })

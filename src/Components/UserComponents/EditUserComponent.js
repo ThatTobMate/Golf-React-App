@@ -8,10 +8,10 @@ import { style } from '../../Themes/UserStyles';
 export class EditUserComponent extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      controlledDate: this.props.user.user.DOB
+      controlledDate: new Date(this.props.user.user.DOB)
     };
+    this.handleChange.bind(this);
   };
 
   handleChange = (event, date) => {
@@ -27,7 +27,7 @@ export class EditUserComponent extends Component {
   handleOnSubmitUser() {
     let userData = {
       name: this.refs.name.input.value,
-      DOB: this.refs.dob.state.date
+      DOB: +this.refs.dob.state.date
     };
     this.props.onSubmitUser(userData);
   };
