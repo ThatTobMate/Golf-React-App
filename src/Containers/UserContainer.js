@@ -7,23 +7,26 @@ import { containerStyle } from '../Themes/UserStyles';
 import { openUserForm, closeUserForm } from '../Actions/UtilityActions';
 import { submitUserDetailsUpdate } from '../Actions/UserActions';
 
-
+function ProfilePage (props) {
+  return (
+    <div>
+      <Paper style={containerStyle.profile} zDepth={3}>
+        <User.ProfilePictureComponent user={props.user} />
+      </Paper>
+      <User.DetailsComponent user={props.user} onUpdateUser={props.onUpdateUser}/>
+      <Paper style={containerStyle.trophies} zDepth={3}>
+        <User.TabsComponent user={props.user} />
+      </Paper>
+    </div>
+  )
+}
 
 
 class UserContainer extends Component {
   render () {
     const { user, utility } = this.props;
-    var html = <div>
-        <Paper style={containerStyle.profile} zDepth={3}>
-          <User.ProfilePictureComponent user={this.props.user} />
-        </Paper>
-        <User.DetailsComponent user={this.props.user} onUpdateUser={this.props.onUpdateUser}/>
-        <Paper style={containerStyle.trophies} zDepth={3}>
-          <User.TabsComponent user={this.props.user} />
-        </Paper>
-      </div>
-    if (!user.user) html = <CircularProgress size={2} />
-    if (utility.forms.updateUser) html = <User.EditUserComponent user={this.props.user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
+    let html = user.user ? <ProfilePage user={user} onUpdateUser={this.props.onUpdateUser}/> : <CircularProgress size={2} />
+    if (utility.forms.updateUser) html = <User.EditUserComponent user={user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
     return (
       <div>
         {html}
