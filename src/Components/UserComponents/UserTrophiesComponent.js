@@ -4,15 +4,15 @@ import Subheader from 'material-ui/Subheader';
 import { style } from '../../Themes/UserStyles';
 
 export class UserTrophiesComponent extends Component {
-  render() {
-    const { user } = this.props;
+  render () {
+    const { trophies } = this.props;
     return (
       <div style={style.root}>
         <GridList
           cellHeight={200}
           style={style.gridList}
         >
-          {user.trophies.map((trophy, index) => (
+          {trophies.map((trophy, index) => (
               <GridTile
                 style={style.trophyContainer}
                 key={index}

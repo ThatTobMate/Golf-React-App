@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class ScorecardContainer extends Component {
+export class ScorecardContainer extends Component {
   constructor (props) {
     super(props);
   }

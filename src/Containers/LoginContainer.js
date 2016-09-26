@@ -7,7 +7,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 class LoginContainer extends Component {
   render() {
     const { user } = this.props;
-    var html = user.user ? <Auth.LoginWelcome user={this.props.user} onLogOut={this.props.onLogOut} /> : <Auth.LoginForm onLogin={this.props.onLogin} onCreate={this.props.onCreate} />
+    let html = user.user ? <Auth.LoginWelcome user={this.props.user} onLogOut={this.props.onLogOut} /> : <Auth.LoginForm onLogin={this.props.onLogin} onCreate={this.props.onCreate} />
     if (user.status === 'authenticating' && user.loading) html = <CircularProgress size={2} />
     return (
       <div>
@@ -36,3 +36,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginContainer);
+
+// React.createElement('div', {onLogout: this.props.onLogout, user: this.props.user}, 'LoginWelcome')

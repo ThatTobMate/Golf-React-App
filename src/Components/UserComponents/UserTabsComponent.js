@@ -7,11 +7,11 @@ import { UserTournamentsComponent } from './UserTournamentsComponent';
 
 export class UserTabsComponent extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-        value: 'tournaments',
-      };
-    }
+    super(props);
+    this.state = {
+      value: 'tournaments',
+    };
+  }
 
     handleChange = (value) => {
       this.setState({
@@ -20,7 +20,7 @@ export class UserTabsComponent extends Component {
     };
 
     render() {
-      const { user } = this.props;
+      const { user, tournaments, trophies } = this.props.user;
       return (
         <Tabs
           value={this.state.value}
@@ -28,12 +28,12 @@ export class UserTabsComponent extends Component {
         >
           <Tab label="Tournaments" value="tournaments"  >
             <div>
-              { user.tournaments ? <UserTournamentsComponent  user={this.props.user} /> : <CircularProgress size={2} />}
+              { tournaments ? <UserTournamentsComponent  tournaments={tournaments} /> : <CircularProgress size={2} />}
             </div>
           </Tab>
           <Tab label="Trophies" value="trophies" >
             <div>
-              { user.trophies ? <UserTrophiesComponent  user={this.props.user} /> : <CircularProgress size={2} />}
+              { trophies ? <UserTrophiesComponent  trophies={trophies} /> : <CircularProgress size={2} />}
             </div>
           </Tab>
         </Tabs>
