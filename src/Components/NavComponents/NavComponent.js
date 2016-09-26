@@ -11,6 +11,10 @@ export class NavComponent extends Component {
   constructor(props) {
       super(props);
       this.state = {open: false};
+      this.handleLogOut.bind(this);
+      this.navigateToUserProfile.bind(this);
+      this.navigateToHome.bind(this);
+      this.navigateToScorecards.bind(this);
     }
     
     handleToggle = () => this.setState({open: !this.state.open});
@@ -20,6 +24,8 @@ export class NavComponent extends Component {
     navigateToUserProfile = () => {this.context.router.push('/user/' + this.props.user.user.uid)}
 
     navigateToHome = () => {this.context.router.push('/')}
+
+    navigateToScorecards = () => {this.context.router.push('/scorecard/history')}
 
     handleLogOut = () => {
       this.props.onLogOut()
@@ -41,9 +47,10 @@ export class NavComponent extends Component {
           onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem onTouchTap={this.handleClose}>X</MenuItem>
-          <MenuItem onTouchTap={this.handleLogOut.bind(this)}>Log Out</MenuItem>
-          <MenuItem onTouchTap={this.navigateToUserProfile.bind(this)}>My Profile</MenuItem>
-          <MenuItem onTouchTap={this.navigateToHome.bind(this)}>Home</MenuItem>
+          <MenuItem onTouchTap={this.navigateToHome}>Home</MenuItem>
+          <MenuItem onTouchTap={this.navigateToUserProfile}>My Profile</MenuItem>
+          <MenuItem onTouchTap={this.navigateToScorecards}>Scorecards</MenuItem>
+          <MenuItem onTouchTap={this.handleLogOut}>Log Out</MenuItem>
         </Drawer>
       </div>
     );
