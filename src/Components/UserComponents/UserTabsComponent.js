@@ -20,7 +20,7 @@ export class UserTabsComponent extends Component {
     };
 
     render() {
-      const { user, tournaments, trophies } = this.props;
+      const { user, tournaments, trophies } = this.props.user;
       return (
         <Tabs
           value={this.state.value}

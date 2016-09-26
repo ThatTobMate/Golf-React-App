@@ -7,26 +7,29 @@ import { containerStyle } from '../Themes/UserStyles';
 import { openUserForm, closeUserForm } from '../Actions/UtilityActions';
 import { submitUserDetailsUpdate } from '../Actions/UserActions';
 
-
+function ProfilePage (props) {
+  return (
+    <div>
+      <Paper style={containerStyle.profile} zDepth={3}>
+        <User.ProfilePictureComponent user={props.user} />
+      </Paper>
+      <User.DetailsComponent user={props.user} onUpdateUser={props.onUpdateUser}/>
+      <Paper style={containerStyle.trophies} zDepth={3}>
+        <User.TabsComponent user={props.user} />
+      </Paper>
+    </div>
+  )
+}
 
 
 class UserContainer extends Component {
   constructor(props) {
     super(props);
-  }
+  };
   render () {
-    const { userData, utility } = this.props;
-    var html = <div>
-        <Paper style={containerStyle.profile} zDepth={3}>
-          <User.ProfilePictureComponent user={userData.user} />
-        </Paper>
-        <User.DetailsComponent user={userData.user} onUpdateUser={this.props.onUpdateUser}/>
-        <Paper style={containerStyle.trophies} zDepth={3}>
-          <User.TabsComponent trophies={userData.trophies} tournaments={userData.tournaments} user={userData.user} />
-        </Paper>
-      </div>
-    if (!userData.user) html = <CircularProgress size={2} />
-    if (utility.forms.updateUser) html = <User.EditUserComponent user={userData.user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
+    const { user, utility } = this.props;
+    let html = user.user ? <ProfilePage user={user} onUpdateUser={this.props.onUpdateUser}/> : <CircularProgress size={2} />
+    if (utility.forms.updateUser) html = <User.EditUserComponent user={user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
     return (
       <div>
         {html}
@@ -38,7 +41,7 @@ class UserContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.authReducer,
-    userData: state.userReducer,
+    user: state.userReducer,
     utility: state.utilityReducer
   };
 };

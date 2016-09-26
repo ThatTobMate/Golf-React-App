@@ -19,7 +19,7 @@ export class UserDetailsComponent extends Component {
     this.props.onUpdateUser();
   }
   render() {
-    const { user } = this.props;
+    const { user } = this.props.user;
     return (
       <div>
         <h3 style={style.name}> { user.name }</h3>

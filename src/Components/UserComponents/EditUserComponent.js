@@ -7,10 +7,10 @@ import { style } from '../../Themes/UserStyles';
 export class EditUserComponent extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      controlledDate: this.props.user.DOB
+      controlledDate: new Date(this.props.user.user.DOB)
     };
+    this.handleChange.bind(this);
   };
 
   handleChange = (event, date) => {
@@ -26,13 +26,13 @@ export class EditUserComponent extends Component {
   handleOnSubmitUser() {
     let user = {
       name: this.refs.name.input.value,
-      DOB: this.refs.dob.state.date
+      DOB: +this.refs.dob.state.date
     };
     this.props.onSubmitUser(user);
   };
 
   render () {
-    const { user } = this.props;
+    const { user } = this.props.user;
     return (
       <div>
         <h1> Update Details </h1>
