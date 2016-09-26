@@ -11,19 +11,22 @@ import { submitUserDetailsUpdate } from '../Actions/UserActions';
 
 
 class UserContainer extends Component {
+  constructor(props) {
+    super(props);
+  }
   render () {
-    const { user, utility } = this.props;
+    const { userData, utility } = this.props;
     var html = <div>
         <Paper style={containerStyle.profile} zDepth={3}>
-          <User.ProfilePictureComponent user={this.props.user} />
+          <User.ProfilePictureComponent user={userData.user} />
         </Paper>
-        <User.DetailsComponent user={this.props.user} onUpdateUser={this.props.onUpdateUser}/>
+        <User.DetailsComponent user={userData.user} onUpdateUser={this.props.onUpdateUser}/>
         <Paper style={containerStyle.trophies} zDepth={3}>
-          <User.TabsComponent user={this.props.user} />
+          <User.TabsComponent trophies={userData.trophies} tournaments={userData.tournaments} user={userData.user} />
         </Paper>
       </div>
-    if (!user.user) html = <CircularProgress size={2} />
-    if (utility.forms.updateUser) html = <User.EditUserComponent user={this.props.user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
+    if (!userData.user) html = <CircularProgress size={2} />
+    if (utility.forms.updateUser) html = <User.EditUserComponent user={userData.user} onSubmitUser={this.props.onSubmitUser} onCancelUpdate={this.props.onCancelUpdate}/>
     return (
       <div>
         {html}
@@ -35,7 +38,7 @@ class UserContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.authReducer,
-    user: state.userReducer,
+    userData: state.userReducer,
     utility: state.utilityReducer
   };
 };

@@ -5,14 +5,14 @@ import { style } from '../../Themes/UserStyles';
 
 export class UserTournamentsComponent extends Component {
   render () {
-    const { user } = this.props;
+    const { tournaments } = this.props;
     return (
       <div style={style.root}>
         <GridList
           cellHeight={200}
           style={style.gridList}
         >
-          {user.tournaments.map((tournament, index) => (
+          {tournaments.map((tournament, index) => (
               <GridTile
                 style={style.tournamentContainer}
                 key={index}
