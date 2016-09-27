@@ -27,6 +27,11 @@ export class NavComponent extends Component {
 
     navigateToScorecards = () => {this.context.router.push('/scorecard/history')}
 
+    navigateToTournaments(){
+      this.context.router.push('/tournaments')
+    }
+
+
     handleLogOut = () => {
       this.props.onLogOut()
     }
@@ -50,6 +55,7 @@ export class NavComponent extends Component {
           <MenuItem onTouchTap={this.navigateToHome}>Home</MenuItem>
           <MenuItem onTouchTap={this.navigateToUserProfile}>My Profile</MenuItem>
           <MenuItem onTouchTap={this.navigateToScorecards}>Scorecards</MenuItem>
+          <MenuItem onTouchTap={()=>this.navigateToTournaments()}>Tournaments</MenuItem>
           <MenuItem onTouchTap={this.handleLogOut}>Log Out</MenuItem>
         </Drawer>
       </div>
