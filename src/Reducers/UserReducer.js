@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 
 export default function userReducer (state = INITIAL_STATE, action) {
   let error;
-  console.log(action.type, action.payload)
   switch (action.type) {
     case UserConstants.FETCH_USER :
       return {

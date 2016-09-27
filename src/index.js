@@ -45,9 +45,6 @@ firebase.initializeApp(config);
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store)
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
 // store.dispatch(addUser('toatest@mail.com', 'password'))
 store.dispatch(checkForSession())
 

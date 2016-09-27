@@ -50,7 +50,6 @@ export const updateUserDetailsFailure = (error) => {
 
 export const submitUserDetailsUpdate = (userData) => {
   return (dispatch) => {
-    console.log('userDaate', userData)
     dispatch(updateUser());
     firebase.database().ref('users')
     .child(localStorage.getItem('uid'))

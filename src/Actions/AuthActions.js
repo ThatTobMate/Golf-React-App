@@ -93,7 +93,6 @@ export const logOut = () => {
   return (dispatch) => {
     firebase.auth().signOut()
     .then(function (data) {
-      console.log(data)
       localStorage.removeItem('uid');
       dispatch(loggedOut())
       dispatch(push('/'))
