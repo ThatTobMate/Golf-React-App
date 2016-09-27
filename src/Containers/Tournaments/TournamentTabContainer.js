@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tournaments } from '../../Components/TournamentComponents';
+import { fetchAllCourses } from '../../Actions/CourseActions';
 
 const mapStateToProps = (state) => {
 	return {
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onAddCourse: ()=>{ dispatch(addCourse()) }
+		onAddCourse: (details) => dispatch(addCourse(details)),
+		onInitialise: () => dispatch(fetchAllCourses())
 	}
 }
 

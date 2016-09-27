@@ -4,7 +4,7 @@ export default class HistoryComponent extends Component {
 	render(){
 		return(
 				<div>
-					<p>helloWorld</p>
+					<p>Tournament History Component</p>
 				</div>
 			)
 	}

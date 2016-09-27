@@ -1,9 +1,38 @@
 import React, { Component } from 'react';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import CreateTournament from './CreateTournament';
+import JoinTournament from './JoinTournament';
+
 
 export default class TournamentTabComponent extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			value: 'createTournament'
+		}
+	}
+
+	componentWillMount(){
+		this.props.onInitialise()
+	}
+
+	handleChange(){
+		this.setState({
+			value: value
+		});
+	};
+
 	render(){
+		const { tournaments } = this.props;
 		return(
-			<div>HELLLLOOOO WORLD</div>
+			<Tabs>
+				<Tab value={this.state.value} label='Create Tournament'>
+					<CreateTournament />
+				</Tab>
+				<Tab value={this.state.value} label='Join Tournament'>
+					<JoinTournament />
+				</Tab>
+			</Tabs>
 		)
 	}
 }
