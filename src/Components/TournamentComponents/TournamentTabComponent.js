@@ -27,7 +27,8 @@ export default class TournamentTabComponent extends Component {
 		return(
 			<Tabs>
 				<Tab value={this.state.value} label='Create Tournament'>
-					<CreateTournament courses={courses}/>
+					<CreateTournament courses={courses}
+														onCreateTournament={this.props.onCreateTournament}/>
 				</Tab>
 				<Tab value={this.state.value} label='Join Tournament'>
 					<JoinTournament />

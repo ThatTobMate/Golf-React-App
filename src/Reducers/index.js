@@ -4,12 +4,14 @@ import courseReducer from './CourseReducer';
 import userReducer from './UserReducer';
 import utilityReducer from './UtilityReducer';
 import { routerReducer } from 'react-router-redux';
+import tournamentReducer from './TournamentReducer';
 
 const appReducer = combineReducers({
   authReducer,
   courseReducer,
   userReducer,
   utilityReducer,
+  tournamentReducer,
   routing: routerReducer
 });
 
