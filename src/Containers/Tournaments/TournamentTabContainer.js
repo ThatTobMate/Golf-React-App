@@ -5,7 +5,7 @@ import { fetchAllCourses } from '../../Actions/CourseActions';
 
 const mapStateToProps = (state) => {
 	return {
-		courses: state.courses
+		courses: state.courseReducer.courses
 	}
 }
 

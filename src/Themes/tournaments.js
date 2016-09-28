@@ -6,5 +6,10 @@ export const style = {
 		marginBottom:'5%'	
 	},
 	tabContainer: {
+	},
+	createTournamentContainer:{
+		display: 'flex',
+		alignItems: 'center',
+		flexDirection: 'column'
 	}
 }

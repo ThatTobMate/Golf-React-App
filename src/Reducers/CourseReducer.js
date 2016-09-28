@@ -1,15 +1,8 @@
 import {CoursesConstants} from '../Constants/Constants';
 var holes = [];
-for(var i = 0; i < 18; i++) {
-  holes.push({courseId: null, hole: i + 1, par: null, strokeIndex: null})
-}
-const INITIAL_STATE = {
-  course: {
-    name: null,
-    location: null,
-    holes: holes
-  }, 
-  courseList: null,
+
+const INITIAL_STATE = { 
+  courses: [],
   status: null,
   error: null,
   loading: false
@@ -23,7 +16,7 @@ export default function courseReducer(state = INITIAL_STATE, action) {
               status: 'Adding Course',
               loading: true
       };
-    case CoursesConstants.ADD_COURSE_SUCCESSFUL :
+    case CoursesConstants.ADD_COURSE_SUCCESS :
       return {...state,
               course: action.payload,
               status: 'Successfully added course',
@@ -41,7 +34,7 @@ export default function courseReducer(state = INITIAL_STATE, action) {
               status: 'Fetching Courses',
               loading: true
       };
-    case CoursesConstants.FETCH_ALL_COURSES_SUCCESSFUL :
+    case CoursesConstants.FETCH_ALL_COURSES_SUCCESS :
       return {...state,
               courses: action.payload,
               status: 'Successfully added course',
@@ -59,7 +52,7 @@ export default function courseReducer(state = INITIAL_STATE, action) {
               status: 'Fetching Course',
               loading: true
       };
-    case CoursesConstants.FETCH_COURSE_SUCCESSFUL :
+    case CoursesConstants.FETCH_COURSE_SUCCESS :
       return {...state,
               course: action.payload,
               status: 'Successfully fetched course',

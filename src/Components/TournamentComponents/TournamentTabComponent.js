@@ -23,11 +23,11 @@ export default class TournamentTabComponent extends Component {
 	};
 
 	render(){
-		const { tournaments } = this.props;
+		const { tournaments, courses } = this.props;
 		return(
 			<Tabs>
 				<Tab value={this.state.value} label='Create Tournament'>
-					<CreateTournament />
+					<CreateTournament courses={courses}/>
 				</Tab>
 				<Tab value={this.state.value} label='Join Tournament'>
 					<JoinTournament />

@@ -28,8 +28,19 @@ export const fetchCourseSuccess = (course) => {
 };
 
 export const fetchAllCourses = () => {
+  return (dispatch) => {
+    const courses = firebase.database().ref('courses/').on('value',(snapshot)=>{
+      dispatch(fetchAllCoursesSuccess(snapshot.val()))
+    }, (err)=>{
+      dispatch(fetchAllCoursesFailure(err))
+    })
+  }
+};
+
+export const fetchAllCoursesFailure = (err) => {
   return {
-    type: CoursesConstants.FETCH_ALL_COURSES
+    type: CoursesConstants.FETCH_ALL_COURSES_FAILURE,
+    payload: err
   };
 };
 
