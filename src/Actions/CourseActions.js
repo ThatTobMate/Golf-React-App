@@ -1,18 +1,38 @@
 import {CoursesConstants} from '../Constants/Constants';
 import * as firebase from 'firebase';
 
-export const addCourse = () => {
+const addCourseAttempt = () => {
   return {
     type: CoursesConstants.ADD_COURSE
-  };
-};
+  }
+}
 
-export const addCourseSuccess = (course) => {
+const addCourseSuccess = () => {
   return {
-    type: CoursesConstants.ADD_COURSE_SUCCESS,
-    payload: course
-  };
-};
+    type: CoursesConstants.ADD_COURSE_SUCCESS
+  }
+}
+
+const addCourseFailure = (err) => {
+  return {
+    type: CoursesConstants.ADD_COURSE_FAILURE,
+    payload: err
+  }
+}
+
+export const addCourse = (data) => {
+  return (dispatch) => {
+    dispatch(addCourseAttempt());
+    const tournKey = firebase.database().ref('tournaments')
+      .push(data)
+      .then((data)=>{
+        dispatch(addCourseSuccess());
+      })
+      .catch((err)=>{
+        dispatch(addTournamentFailure(err.message));
+      });
+  }
+}
 
 export const fetchCourse = () => {
   return {
