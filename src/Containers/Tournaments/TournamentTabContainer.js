@@ -7,7 +7,8 @@ import { addTournament } from '../../Actions/TournamentActions';
 
 const mapStateToProps = (state) => {
 	return {
-		courses: state.courseReducer.courses
+		courses: state.courseReducer.courses,
+		tournaments: state.tournamentReducer
 	}
 }
 

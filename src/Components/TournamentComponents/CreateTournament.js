@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {TextField, RaisedButton, DatePicker, MenuItem, SelectField, TimePicker} from 'material-ui';
 import _ from 'underscore';
+import CircularProgress from 'material-ui/CircularProgress';
 import {style} from '../../Themes/tournaments';
 
 export default class CreateTournament extends Component {
@@ -51,19 +52,25 @@ export default class CreateTournament extends Component {
 		this.props.onCreateTournament(data);
 	}
 	render(){
-		const { courses } = this.props
+		const { tournaments, courses } = this.props
 		return(
 				<div style={style.createTournamentContainer}>
 					<h1>Create Tournament</h1>
 					<TextField floatingLabelText='Tournament Name'
 										 ref='name' />
 				  <br />
+				  <div style={style.addNewCourseContainer}>
 					<SelectField floatingLabelText='Course Name'
 											 value={this.state.courseKey}
 											 onChange={(e,i,key)=>this.handleCourseChange(e,i,key)} >
 							<MenuItem key='unique' value={0} primaryText='Choose Course' />
 							{this.createItems(courses)}
 					</SelectField>
+					<p style={style.courseQuestion}>
+						Course not here? <span style={style.addCourseText}
+																	 onClick={()=>alert('add course')}>Add Course</span>
+					</p>
+					</div>
 					<br />
 					<DatePicker floatingLabelText='Date of Tournament'
 											hintText='Date of Tournament'
@@ -75,7 +82,8 @@ export default class CreateTournament extends Component {
 											ref='time'
 											onChange={(e, time)=>this.handleTimeChange(e, time)} />
 				  <br />
-				  <RaisedButton label='Create' primary={true} onClick={()=>{this.submitForm()}}/>
+				  {tournaments.loading ? <CircularProgress size={0.5} />
+															 : <RaisedButton label='Create' primary={true} onClick={()=>{this.submitForm()}}/>}
 				</div>
 			)
 	}

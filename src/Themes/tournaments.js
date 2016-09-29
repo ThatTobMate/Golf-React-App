@@ -11,5 +11,20 @@ export const style = {
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column'
+	},
+	addNewCourseContainer:{
+		display: 'flex',
+		maxWidth: '260px'
+	},
+	courseQuestion:{
+		fontSize: '10px',
+		display: 'flex',
+		alignSelf: 'flex-end',
+		flexDirection: 'column'
+	},
+	addCourseText:{
+		cursor: 'pointer',
+		color: 'rgb(139,195,74)',
+		textDecoration: 'underline',
 	}
 }
