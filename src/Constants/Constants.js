@@ -9,7 +9,8 @@ export const AuthConstants = {
 };
 
 export const UtilityConstants = {
-  UPDATE_USER_FORM: 'UPDATE_USER_FORM'
+  UPDATE_USER_FORM: 'UPDATE_USER_FORM',
+  ADD_COURSE_FORM: 'ADD_COURSE_FORM'
 };
 
 export const ScorecardConstant = {

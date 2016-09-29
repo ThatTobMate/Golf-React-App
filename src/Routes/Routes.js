@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from '../App';
 import LoginContainer from '../Containers/LoginContainer';
-import CourseContainer from '../Containers/CourseContainer';
 import UserContainer from '../Containers/UserContainer';
 import Tournaments from '../Containers/Tournaments';
 import ScorecardContainer from '../Containers/ScorecardContainer';
@@ -14,7 +13,6 @@ export const getRoutes = (store) => {
     <Route path='/' component={App}>
       <IndexRoute component={LoginContainer} />
       <Route path='/user/:userId' component={UserContainer} />
-      <Route path='/addCourse' component={CourseContainer} />
       <Route path='/tournaments' component={Tournaments} />
       <Route path='/scorecard/:scorecardId' component={ScorecardContainer} />
       <Route path='/addScorecard' component={ScorecardContainer} />

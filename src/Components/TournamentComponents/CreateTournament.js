@@ -42,6 +42,10 @@ export default class CreateTournament extends Component {
 		return arr;
 	}
 
+	toggleAddCourseForm(){
+		this.props.onToggleAddNewCourse();
+	}
+
 	submitForm(){
 		let data = {
 			tournamentName: this.refs.name.input.value,
@@ -68,7 +72,7 @@ export default class CreateTournament extends Component {
 					</SelectField>
 					<p style={style.courseQuestion}>
 						Course not here? <span style={style.addCourseText}
-																	 onClick={()=>alert('add course')}>Add Course</span>
+																	 onClick={()=>this.toggleAddCourseForm()}>Add Course</span>
 					</p>
 					</div>
 					<br />

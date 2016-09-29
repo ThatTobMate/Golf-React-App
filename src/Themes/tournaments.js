@@ -20,7 +20,8 @@ export const style = {
 		fontSize: '10px',
 		display: 'flex',
 		alignSelf: 'flex-end',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		paddingLeft: '10px'
 	},
 	addCourseText:{
 		cursor: 'pointer',
