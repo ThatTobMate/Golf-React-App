@@ -3,6 +3,7 @@ import authReducer from './AuthReducer';
 import courseReducer from './CourseReducer';
 import userReducer from './UserReducer';
 import utilityReducer from './UtilityReducer';
+import scorecardReducer from './ScorecardReducer';
 import { routerReducer } from 'react-router-redux';
 
 const appReducer = combineReducers({
@@ -10,6 +11,7 @@ const appReducer = combineReducers({
   courseReducer,
   userReducer,
   utilityReducer,
+  scorecardReducer,
   routing: routerReducer
 });
 

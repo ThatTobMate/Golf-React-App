@@ -7,8 +7,7 @@ import { containerStyle } from '../Themes/UserStyles';
 import { openUserForm, closeUserForm } from '../Actions/UtilityActions';
 import { submitUserDetailsUpdate } from '../Actions/UserActions';
 
-function ProfilePage (props) {
-  return (
+const ProfilePage = (props) => (
     <div>
       <Paper style={containerStyle.profile} zDepth={3}>
         <User.ProfilePictureComponent user={props.user} />
@@ -19,7 +18,6 @@ function ProfilePage (props) {
       </Paper>
     </div>
   )
-}
 
 
 class UserContainer extends Component {
