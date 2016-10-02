@@ -19,12 +19,12 @@ export class UserDetailsComponent extends Component {
     this.props.onUpdateUser();
   }
   render() {
-    const { user } = this.props;
+    const { user } = this.props.user;
     return (
       <div>
-        <h3 style={style.name}> { user.user && user.user.name }</h3>
+        <h3 style={style.name}> { user.name }</h3>
         <FontIcon hoverColor={Colors.green500} className="material-icons" style={style.icon} onClick={() => this.handleUpdate()}>mode_edit</FontIcon>
-        <p> { user.user && user.user.email }</p>
+        <p> { user.email }</p>
       </div>
     );
   };

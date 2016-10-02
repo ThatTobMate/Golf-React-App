@@ -21,6 +21,9 @@ const ProfilePage = (props) => (
 
 
 class UserContainer extends Component {
+  constructor(props) {
+    super(props);
+  };
   render () {
     const { user, utility } = this.props;
     let html = user.user ? <ProfilePage user={user} onUpdateUser={this.props.onUpdateUser}/> : <CircularProgress size={2} />
