@@ -1,9 +1,9 @@
 import { HistoryComponent } from './HistoryComponent';
-import { ScorecardComponent } from './ScorecardComponent';
+import { CreateScorecardComponent } from './ScorecardComponent';
 
 const Scorecard = {
   HistoryComponent: HistoryComponent,
-  ScorecardComponent: ScorecardComponent
+  CreateScorecardComponent: CreateScorecardComponent
 };
 
 export default Scorecard;

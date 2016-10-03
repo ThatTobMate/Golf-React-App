@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Scorecard from '../Components/ScorecardComponents';
+import { selectCourse } from '../Actions/ScorecardActions';
+
 
 export class ScorecardContainer extends Component {
   constructor (props) {
@@ -9,7 +11,7 @@ export class ScorecardContainer extends Component {
   render () {
     return (
       <div>
-        <Scorecard.HistoryComponent />
+       	<Scorecard.CreateScorecardComponent user={this.props.user} scorecard={this.props.scorecard} selectCourse={this.props.selectCourse} course={this.props.course} />
       </div>
     )
   }
@@ -18,13 +20,15 @@ export class ScorecardContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.userReducer,
-    scorecard: state.scorecardReducer
+    scorecard: state.scorecardReducer,
+    utility: state.utilityReducer,
+    course: state.courseReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    selectCourse: (courseId) => dispatch(selectCourse(courseId))
   };
 };
 

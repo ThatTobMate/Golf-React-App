@@ -22,12 +22,18 @@ export default function scorecardReducer(state = INITIAL_STATE, action) {
         loading: true,
         status: 'Creating new scorecard'
       };
+    case ScorecardConstants.SELECT_COURSE :
+      return {
+        ...state,
+        loading: false,
+        status: 'Selected Course',
+        courseId: action.payload
+      };
     case ScorecardConstants.ADD_SCORECARD_SUCCES :
       return {
         ...state,
         user: state.user.uid,
         date: +new Date(),
-        courseId: 'burstead',
         scores: action.payload.scores,
         par: action.payload.par,
         loading: false,

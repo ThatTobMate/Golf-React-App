@@ -26,3 +26,10 @@ export const closeUserForm = () => {
     payload: false
   };
 };
+
+export const selectCourse = (courseId) => {
+  return {
+    type: UtilityConstants.SELECT_COURSE,
+    payload: courseId
+  }
+}

@@ -18,3 +18,4 @@ export class LoginWelcomeComponent extends Component {
     this.props.onLogOut()
   }
 }
+

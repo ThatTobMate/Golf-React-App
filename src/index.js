@@ -19,10 +19,10 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: Colors.lightGreen500,
+    primary1Color: Colors.green500,
     primary2Color: Colors.green500,
     primary3Color: Colors.grey400,
-    accent1Color: Colors.green500,
+    accent1Color: Colors.lightGreen500,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
     textColor: Colors.darkblack,
